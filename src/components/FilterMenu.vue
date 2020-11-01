@@ -3,7 +3,7 @@
   <div class="filter-menu">
     <div class="filter-menu__section">
       <h3 class="filter-menu__section__title">Location</h3>
-      <select class="filter-menu__section__input" v-model="location" @change="setLocation(location)">
+      <select class="filter-menu__section__input" v-model="location">
         <option value="鹽埕">鹽埕</option>
         <option value="岡山">岡山</option>
       </select>
@@ -12,7 +12,7 @@
       <h3 class="filter-menu__section__title">Date</h3>
       <div class="filter-menu__section__content">
         <label for="from">from</label>
-        <input type="date" id="from" class="filter-menu__section__input" v-model="time.start" @change="setTime(time)">
+        <input type="date" id="from" class="filter-menu__section__input" v-model="time.start">
         <label for="to">to</label>
         <input type="date" id="to" class="filter-menu__section__input" v-model="time.end" :min="time.start">
       </div>
@@ -24,7 +24,7 @@
         <label for="all">All</label>
       </div>
       <div class="checkbox-group">
-        <input type="checkbox" name="categories" value="Entertainment" id="entertainment" v-model="categories.specific" @change="setCategories(categories)">
+        <input type="checkbox" name="categories" value="Entertainment" id="entertainment" v-model="categories.specific">
         <label for="entertainment">Entertainment</label>
       </div>
       <div class="checkbox-group">
@@ -45,47 +45,58 @@
 </template>
 
 <script>
-import { ref, reactive, watch, watchEffect } from 'vue';
-import { mapMutations } from 'vuex';
-
 export default {
   name: 'FilterMenu',
-  setup(props, { root }) {
-    let location = ref('')
-    let time = reactive({
-      start: '',
-      end: ''
-    });
-    watchEffect(() => {
-      if (time.start > time.end) {
-        time.end = time.start
+  computed: {
+    location: {
+      get () {
+        return this.$store.state.location
+      },
+      set (value) {
+        this.$store.commit('setLocation', value)
       }
-    })
-
-    let categories = reactive({
-      selectAll: true,
-      specific: []
-    })
-    // 當其他都沒有打勾的時候，自動把All打勾
-    watchEffect(() => {
-      categories.selectAll = categories.specific.length === 0;
-    })
-    // 選擇All的時候把其他都清掉
-    watch(() => categories.selectAll, () => {
-      if (categories.selectAll) {
-        categories.specific.length = 0 
+    },
+    time: {
+      get () {
+        return this.$store.state.time
+      },
+      set (value) {
+        this.$store.commit('setTime', value)
       }
-    })
-
-    return {
-      location,
-      time,
-      categories,
-      ...mapMutations([
-        'setLocation',
-        'setTime',
-        'setCategories'
-      ])
+    },
+    categories: {
+      get () {
+        return this.$store.state.categories
+      },
+      set (value) {
+        this.$store.commit('setCategories', value)
+      }
+    }
+  },
+  watch: {
+    'time.start': function() {
+      if (this.time.start > this.time.end) {
+        this.$store.commit('setTime', {
+          start: this.time.start,
+          end: this.time.start
+        })
+      }
+    },
+    // 點擊特定項目後，就把All取消勾選
+    'categories.specific': function() {
+      this.$store.commit('setCategories', {
+        ...this.categories,
+        selectAll: this.categories.specific.length === 0
+      })
+    },
+    // 點擊All就清空其他的
+    'categories.selectAll': function() {
+      if (this.categories.selectAll) {
+        this.$store.commit('setCategories', {
+          ...this.categories,
+          specific: []
+        })
+      }
     }
   }
 }
