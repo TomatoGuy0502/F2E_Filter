@@ -64,6 +64,11 @@ export default {
     watchEffect(() => {
       categories.selectAll = categories.specific.length === 0;
     })
+    watchEffect(() => {
+      if (time.start > time.end) {
+        time.end = time.start
+      }
+    })
     // 選擇All的時候把其他都清掉
     watch(() => categories.selectAll, () => {
       if (categories.selectAll) {
