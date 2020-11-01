@@ -50,4 +50,11 @@ export default {
     margin-right: 12px;
   }
 }
+
+@media (max-width:1100px) {
+  .navbar {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 </style>

@@ -81,6 +81,7 @@ export default {
   height: calc(100vh - 84px);
   display: flex;
   flex-direction: column;
+  padding-top: 24px;
   &__result {
     font-size: 24px;
     margin-bottom: 15px;
@@ -90,6 +91,14 @@ export default {
   }
   &__card-list {
     overflow: auto;
+    padding-bottom: 40px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  > * {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }
 .tag {

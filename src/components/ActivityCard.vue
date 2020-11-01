@@ -1,6 +1,7 @@
 <template>
   <div class="card">
-    <img class="card__image" :src="img" alt="">
+    <div class="card__image" :style="{'background-image': 'url(' + img + ')'}"></div>
+    <!-- <img class="card__image" :src="img" alt=""> -->
     <div class="card__body">
       <h2 class="card__body__title">{{title}}</h2>
       <p class="card__body__description">{{description}}</p>
@@ -49,7 +50,9 @@ export default {
     box-shadow: 2px 2px 9px 0 #0003;
   }
   &__image {
-    max-width: 220px;
+    background-position: center;
+    background-size: cover;
+    flex: 1 0 235px;
   }
   &__body {
     padding: 24px 20px;
@@ -64,7 +67,7 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
     }
     &__organizer {
@@ -88,6 +91,21 @@ export default {
       .event-place {
         margin-right: 20px;
       }
+    }
+  }
+}
+@media (max-width:1100px) {
+  .card__body__info {
+    flex-direction: column;
+  }
+  .event-place {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  .card {
+    flex-direction: column;
+    &__image {
+      flex: 1 0 300px;
     }
   }
 }
