@@ -14,7 +14,7 @@
         <label for="from">from</label>
         <input type="date" id="from" class="filter-menu__section__input" v-model="time.start">
         <label for="to">to</label>
-        <input type="date" id="to" class="filter-menu__section__input" v-model="time.over" :min="time.start">
+        <input type="date" id="to" class="filter-menu__section__input" v-model="time.end" :min="time.start">
       </div>
     </div>
     <div class="filter-menu__section">
@@ -53,7 +53,7 @@ export default {
     let location = ref('')
     let time = reactive({
       start: '',
-      over: ''
+      end: ''
     });
     let categories = reactive({
       selectAll: true,
