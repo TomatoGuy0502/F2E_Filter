@@ -5,82 +5,63 @@
       <span class="tag" v-for="tag in tags" :key="tag">{{tag}}<i class="far fa-times-circle"></i></span>
     </div>
     <div class="activity-list__card-list">
-      <div class="card">
-        <img class="card__image" src="https://picsum.photos/220/220" alt="">
-        <div class="card__body">
-          <h2 class="card__body__title">Kogi Cosby sweater.</h2>
-          <p class="card__body__description">Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.</p>
-          <span class="card__body__organizer">Ethan Foster</span>
-          <span class="card__body__category">Entertainment</span>
-          <div class="card__body__info">
-            <div class="event-place">
-              <i class="fa fa-map-marker-alt"></i>
-              <span>Kaohsiung City</span>
-            </div>
-            <div class="event-time">
-              <i class="fa fa-calendar-alt"></i>
-              <span>2018/5/24 - 2018/5/31</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card__image" src="https://picsum.photos/220/220" alt="">
-        <div class="card__body">
-          <h2 class="card__body__title">Kogi Cosby sweater.</h2>
-          <p class="card__body__description">Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.</p>
-          <span class="card__body__organizer">Ethan Foster</span>
-          <span class="card__body__category">Entertainment</span>
-          <div class="card__body__info">
-            <div class="event-place">
-              <i class="fa fa-map-marker-alt"></i>
-              <span>Kaohsiung City</span>
-            </div>
-            <div class="event-time">
-              <i class="fa fa-calendar-alt"></i>
-              <span>2018/5/24 - 2018/5/31</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card__image" src="https://picsum.photos/220/220" alt="">
-        <div class="card__body">
-          <h2 class="card__body__title">Kogi Cosby sweater.</h2>
-          <p class="card__body__description">Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.</p>
-          <span class="card__body__organizer">Ethan Foster</span>
-          <span class="card__body__category">Entertainment</span>
-          <div class="card__body__info">
-            <div class="event-place">
-              <i class="fa fa-map-marker-alt"></i>
-              <span>Kaohsiung City</span>
-            </div>
-            <div class="event-time">
-              <i class="fa fa-calendar-alt"></i>
-              <span>2018/5/24 - 2018/5/31</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ActivityCard v-for="card in cards" v-bind="card" :key="card.title" />
     </div>
   </div>
 </template>
 
 <script>
 import { ref } from 'vue';
+import ActivityCard from '/@/components/ActivityCard.vue';
 
 export default {
   name: 'ActivityList',
   props: {
     msg: String
   },
+  components: {
+    ActivityCard
+  },
   setup() {
     let numberOfResults = ref(0)
     let tags = ref(['Entertainment', 'Food'])
+    let cards = ref([
+      {
+        img: 'https://picsum.photos/220/220',
+        title: 'Kogi Cosby sweater.',
+        description: 'Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.',
+        organizer: 'Ethan Foster',
+        category: 'Entertainment',
+        place: 'Kaohsiung City',
+        timeStart: '2018/5/24',
+        timeEnd: '2018/5/31'
+      },
+      {
+        img: 'https://picsum.photos/220/220',
+        title: 'Kogi Cosby sweater.',
+        description: 'Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.',
+        organizer: 'Ethan Foster',
+        category: 'Entertainment',
+        place: 'Kaohsiung City',
+        timeStart: '2018/5/24',
+        timeEnd: '2018/5/31'
+      },
+      {
+        img: 'https://picsum.photos/220/220',
+        title: 'Kogi Cosby sweater.',
+        description: 'Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.',
+        organizer: 'Ethan Foster',
+        category: 'Entertainment',
+        place: 'Kaohsiung City',
+        timeStart: '2018/5/24',
+        timeEnd: '2018/5/31'
+      }
+    ])
 
     return {
       numberOfResults,
-      tags
+      tags,
+      cards
     }
   }
 }
@@ -118,60 +99,6 @@ export default {
   &:hover {
     background-color: #41B883;
     color: #fff;
-  }
-}
-.card {
-  display: flex;
-  background: #fff;
-  box-shadow: 2px 2px 8px 0 #0001;
-  transition: box-shadow .3s;
-  &:not(:last-child) {
-    margin-bottom: 24px;
-  }
-  &:hover {
-    box-shadow: 2px 2px 9px 0 #0003;
-  }
-  &__image {
-    max-width: 220px;
-  }
-  &__body {
-    padding: 24px 20px;
-    &__title {
-      font-size: 24px;
-      line-height: 36px;
-      color: #41B883;
-      font-weight: 700;
-    }
-    &__description {
-      margin: 24px 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-    &__organizer {
-      font-weight: 700;
-      margin-right: 20px;
-    }
-    &__category {
-      display: inline-block;
-      background: #D7D7D7;
-      padding: 3px 16px;
-      border-radius: 50px;
-    }
-    &__info {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      i {
-        margin-right: 7px;
-        font-size: 16px;
-      }
-      .event-place {
-        margin-right: 20px;
-      }
-    }
   }
 }
 </style>

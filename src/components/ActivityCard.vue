@@ -1,0 +1,94 @@
+<template>
+  <div class="card">
+    <img class="card__image" :src="img" alt="">
+    <div class="card__body">
+      <h2 class="card__body__title">{{title}}</h2>
+      <p class="card__body__description">{{description}}</p>
+      <span class="card__body__organizer">{{organizer}}</span>
+      <span class="card__body__category">{{category}}</span>
+      <div class="card__body__info">
+        <div class="event-place">
+          <i class="fa fa-map-marker-alt"></i>
+          <span>{{place}}</span>
+        </div>
+        <div class="event-time">
+          <i class="fa fa-calendar-alt"></i>
+          <span>{{timeStart}} - {{timeEnd}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ActivityCard',
+  props: {
+    img: String,
+    title: String,
+    description: String,
+    organizer: String,
+    category: String,
+    place: String,
+    timeStart: String,
+    timeEnd: String
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.card {
+  display: flex;
+  background: #fff;
+  box-shadow: 2px 2px 8px 0 #0001;
+  transition: box-shadow .3s;
+  &:not(:last-child) {
+    margin-bottom: 24px;
+  }
+  &:hover {
+    box-shadow: 2px 2px 9px 0 #0003;
+  }
+  &__image {
+    max-width: 220px;
+  }
+  &__body {
+    padding: 24px 20px;
+    &__title {
+      font-size: 24px;
+      line-height: 36px;
+      color: #41B883;
+      font-weight: 700;
+    }
+    &__description {
+      margin: 24px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    &__organizer {
+      font-weight: 700;
+      margin-right: 20px;
+    }
+    &__category {
+      display: inline-block;
+      background: #D7D7D7;
+      padding: 3px 16px;
+      border-radius: 50px;
+    }
+    &__info {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      i {
+        margin-right: 7px;
+        font-size: 16px;
+      }
+      .event-place {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+</style>
