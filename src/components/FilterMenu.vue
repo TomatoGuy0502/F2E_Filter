@@ -3,7 +3,7 @@
   <div class="filter-menu">
     <div class="filter-menu__section">
       <h3 class="filter-menu__section__title">Location</h3>
-      <select class="filter-menu__section__input" v-model="location">
+      <select class="filter-menu__section__input" v-model="location" @change="setLocation(location)">
         <option value="鹽埕">鹽埕</option>
         <option value="岡山">岡山</option>
       </select>
@@ -12,7 +12,7 @@
       <h3 class="filter-menu__section__title">Date</h3>
       <div class="filter-menu__section__content">
         <label for="from">from</label>
-        <input type="date" id="from" class="filter-menu__section__input" v-model="time.start">
+        <input type="date" id="from" class="filter-menu__section__input" v-model="time.start" @change="setTime(time)">
         <label for="to">to</label>
         <input type="date" id="to" class="filter-menu__section__input" v-model="time.end" :min="time.start">
       </div>
@@ -24,19 +24,19 @@
         <label for="all">All</label>
       </div>
       <div class="checkbox-group">
-        <input type="checkbox" name="categories" value="Entertainment" id="entertainment" v-model="categories.specific">
+        <input type="checkbox" name="categories" value="Entertainment" id="entertainment" v-model="categories.specific" @change="setCategories(categories)">
         <label for="entertainment">Entertainment</label>
       </div>
       <div class="checkbox-group">
-        <input type="checkbox" name="categories" value="Food" id="food" v-model="categories.specific">
+        <input type="checkbox" name="categories" value="Food" id="food" v-model="categories.specific" >
         <label for="food">Food</label>
       </div>
       <div class="checkbox-group">
-        <input type="checkbox" name="categories" value="Learning" id="learning" v-model="categories.specific">
+        <input type="checkbox" name="categories" value="Learning" id="learning" v-model="categories.specific" >
         <label for="learning">Learning</label>
       </div>
       <div class="checkbox-group">
-        <input type="checkbox" name="categories" value="Outdoors" id="outdoors" v-model="categories.specific">
+        <input type="checkbox" name="categories" value="Outdoors" id="outdoors" v-model="categories.specific" >
         <label for="outdoors">Outdoors</label>
       </div>
     </div>
@@ -46,28 +46,29 @@
 
 <script>
 import { ref, reactive, watch, watchEffect } from 'vue';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'FilterMenu',
-  setup() {
+  setup(props, { root }) {
     let location = ref('')
     let time = reactive({
       start: '',
       end: ''
     });
-    let categories = reactive({
-      selectAll: true,
-      specific: []
-    })
-
-    // 當其他都沒有打勾的時候，自動把All打勾
-    watchEffect(() => {
-      categories.selectAll = categories.specific.length === 0;
-    })
     watchEffect(() => {
       if (time.start > time.end) {
         time.end = time.start
       }
+    })
+
+    let categories = reactive({
+      selectAll: true,
+      specific: []
+    })
+    // 當其他都沒有打勾的時候，自動把All打勾
+    watchEffect(() => {
+      categories.selectAll = categories.specific.length === 0;
     })
     // 選擇All的時候把其他都清掉
     watch(() => categories.selectAll, () => {
@@ -79,7 +80,12 @@ export default {
     return {
       location,
       time,
-      categories
+      categories,
+      ...mapMutations([
+        'setLocation',
+        'setTime',
+        'setCategories'
+      ])
     }
   }
 }

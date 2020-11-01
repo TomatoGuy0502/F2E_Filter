@@ -1,8 +1,8 @@
 <template>
   <div class="activity-list">
-    <h3 class="activity-list__result">Showing {{numberOfResults}} results by…</h3>
+    <h3 class="activity-list__result">Showing {{numberOfResults}} results by…{{location}} {{time}}</h3>
     <div class="activity-list__tags">
-      <span class="tag" v-for="tag in tags" :key="tag">{{tag}}<i class="far fa-times-circle"></i></span>
+      <span class="tag" v-for="tag in categories.specific" :key="tag">{{tag}}<i class="far fa-times-circle"></i></span>
     </div>
     <div class="activity-list__card-list">
       <ActivityCard v-for="card in cards" v-bind="card" :key="card.title" />
@@ -12,6 +12,7 @@
 
 <script>
 import { ref } from 'vue';
+import { mapState } from 'vuex';
 import ActivityCard from '/@/components/ActivityCard.vue';
 
 export default {
@@ -63,7 +64,12 @@ export default {
       tags,
       cards
     }
-  }
+  },
+  computed: mapState([
+    'location',
+    'time',
+    'categories'
+  ])
 }
 </script>
 
