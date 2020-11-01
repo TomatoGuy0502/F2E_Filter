@@ -5,7 +5,7 @@
 #app {
   font-family: 'FakePearl-Regular', Arial, sans-serif;
   color: #2c3e50;
-  height: 100vh;
+  /* height: 100vh; */
   display: grid;
   grid-template-rows: auto 1fr;
 }

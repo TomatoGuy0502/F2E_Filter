@@ -22,7 +22,7 @@ export default {
 <style lang="scss">
 main {
   background: #F2F2F2;
-  height: calc(100vh - 84px);
+  // height: calc(100vh - 84px);
   display: grid;
   grid-template-columns: 300px 1fr;
   grid-template-areas: 
@@ -30,9 +30,19 @@ main {
   padding-left: 40px;
 }
 
-@media (max-width:1100px) {
+@media (max-width: 1100px) {
   main {
     padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: auto;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+    "filter" 
+    "router-view";
   }
 }
 </style>

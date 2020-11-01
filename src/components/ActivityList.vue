@@ -87,7 +87,7 @@ export default {
     margin-bottom: 15px;
   }
   &__tags {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   &__card-list {
     overflow: auto;
@@ -111,12 +111,20 @@ export default {
   align-items: center;
   transition: all .3s;
   cursor: pointer;
+  margin-bottom: 10px;
   i {
     margin-left: 6px;
   }
   &:hover {
     background-color: #41B883;
     color: #fff;
+  }
+}
+
+@media (max-width: 576px) {
+  .activity-list > * {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 </style>

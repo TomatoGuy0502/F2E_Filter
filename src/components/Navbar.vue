@@ -51,10 +51,30 @@ export default {
   }
 }
 
-@media (max-width:1100px) {
+@media (max-width: 1100px) {
   .navbar {
     padding-left: 0;
     padding-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    place-items: center;
+    grid-template-columns: auto;
+    padding: 12px 40px;
+    &__title {
+      padding-left: 0;
+      margin-bottom: 6px;
+    }
+    &__search {
+      margin-left: 0;
+    }
+  }
+}
+@media (max-width: 576px) {
+  .navbar {
+    padding: 12px 20px;
   }
 }
 </style>
