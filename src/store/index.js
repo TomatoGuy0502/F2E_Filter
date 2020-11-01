@@ -3,7 +3,7 @@ import { createStore } from "vuex";
 export default createStore({
   state() {
     return {
-      location: '',
+      location: '鹽埕',
       time: {
         start: '',
         end: ''
