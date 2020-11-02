@@ -28,10 +28,9 @@ export default {
   },
   setup() {
     let numberOfResults = ref(0)
-    let tags = ref(['Entertainment', 'Food'])
     let cards = ref([
       {
-        img: 'https://picsum.photos/220/220',
+        img: 'https://picsum.photos/470/470',
         title: 'Kogi Cosby sweater.',
         description: 'Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.',
         organizer: 'Ethan Foster',
@@ -41,7 +40,7 @@ export default {
         timeEnd: '2018/5/31'
       },
       {
-        img: 'https://picsum.photos/220/220',
+        img: 'https://picsum.photos/470/470',
         title: 'Kogi Cosby sweater.',
         description: 'Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.',
         organizer: 'Ethan Foster',
@@ -51,7 +50,7 @@ export default {
         timeEnd: '2018/5/31'
       },
       {
-        img: 'https://picsum.photos/220/220',
+        img: 'https://picsum.photos/470/470',
         title: 'Kogi Cosby sweater.',
         description: 'Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.',
         organizer: 'Ethan Foster',
@@ -64,7 +63,6 @@ export default {
 
     return {
       numberOfResults,
-      tags,
       cards
     }
   },
