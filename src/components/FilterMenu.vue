@@ -69,7 +69,7 @@ export default {
       if (width > 768) return;
       this[target] = !this[target]
     },
-    debounce(func, delay=250) {
+    debounce(func, delay=150) {
       let timer = null;
     
       return () => {
@@ -156,6 +156,7 @@ export default {
 .filter-menu {
   background-color: #EBEBEB;
   padding: 0 40px;
+  transition: all .3s;
   &__section {
     padding: 24px 0;
     position: relative;
@@ -168,7 +169,7 @@ export default {
     }
     &__toggle {
       position: absolute;
-      top: 28px;
+      top: 16px;
       right: 20px;
     }
     &__content {
@@ -213,8 +214,11 @@ input[type="checkbox"] {
 
 @media (max-width: 768px) {
   .filter-menu {
-    &__section:not(:last-child) {
-      border-bottom: 1px solid #000;
+    &__section {
+      padding: 12px 0;
+      &:not(:last-child) {
+        border-bottom: 1px solid #000;
+      }
     }
   }
 }

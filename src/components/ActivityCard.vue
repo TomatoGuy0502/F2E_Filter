@@ -56,6 +56,7 @@ export default {
   }
   &__body {
     padding: 24px 20px;
+    transition: all .3s;
     &__title {
       font-size: 24px;
       line-height: 36px;
@@ -107,6 +108,11 @@ export default {
     &__image {
       flex: 1 0 300px;
     }
+  }
+}
+@media (max-width: 576px) {
+  .card__body {
+    padding: 16px 15px;
   }
 }
 </style>

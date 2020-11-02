@@ -97,6 +97,7 @@ export default {
     }
   }
   > * {
+    transition: all .3s;
     padding-left: 40px;
     padding-right: 40px;
   }
@@ -118,6 +119,12 @@ export default {
   &:hover {
     background-color: #41B883;
     color: #fff;
+  }
+}
+
+@media (max-width: 768px) {
+  .activity-list {
+    height: auto;
   }
 }
 
