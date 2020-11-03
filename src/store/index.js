@@ -11,8 +11,9 @@ export default createStore({
       categories: {
         selectAll: true,
         specific: []
-      }
-    };
+      },
+      attractions: []
+    }
   },
   mutations: {
     setLocation(state, location) {
@@ -23,6 +24,9 @@ export default createStore({
     },
     setCategories(state, categories) {
       state.categories = categories;
+    },
+    setAttractions(state, attractions) {
+      state.attractions = attractions
     }
   },
   actions: {

@@ -15,7 +15,12 @@ export default {
   components: {
     Navbar,
     FilterMenu
-  }
+  },
+  mounted: async function() {
+    const res = await fetch('https://raw.githubusercontent.com/hexschool/KCGTravel/master/datastore_search.json');
+    const data = await res.json();
+    this.$store.commit('setAttractions', data.result.records)
+  },
 }
 </script>
 

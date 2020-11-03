@@ -27,18 +27,6 @@ export default {
   components: {
     ActivityCard
   },
-  setup() {
-    let attractions = ref([]);
-
-    onMounted(async () => {
-      const res = await fetch('https://raw.githubusercontent.com/hexschool/KCGTravel/master/datastore_search.json');
-      const data = await res.json();
-      attractions.value = data.result.records;
-    })
-    return {
-      attractions
-    }
-  },
   computed: {
     resultList() {
       const vm = this;
@@ -49,7 +37,8 @@ export default {
     ...mapState([
       'location',
       'time',
-      'categories'
+      'categories',
+      'attractions'
     ])
   }
 }
