@@ -1,16 +1,16 @@
 <template>
   <div class="card">
-    <div class="card__image" :style="{'background-image': 'url(' + img + ')'}"></div>
+    <div class="card__image" :style="{'background-image': 'url(' + Picture1 + ')'}"></div>
     <!-- <img class="card__image" :src="img" alt=""> -->
     <div class="card__body">
-      <h2 class="card__body__title">{{title}}</h2>
-      <p class="card__body__description">{{description}}</p>
+      <h2 class="card__body__title">{{Name}}</h2>
+      <p class="card__body__description">{{Description}}</p>
       <span class="card__body__organizer">{{organizer}}</span>
       <span class="card__body__category">{{category}}</span>
       <div class="card__body__info">
         <div class="event-place">
           <i class="fa fa-map-marker-alt"></i>
-          <span>{{place}}</span>
+          <span>{{Add}}</span>
         </div>
         <div class="event-time">
           <i class="fa fa-calendar-alt"></i>
@@ -25,14 +25,32 @@
 export default {
   name: 'ActivityCard',
   props: {
-    img: String,
-    title: String,
-    description: String,
-    organizer: String,
-    category: String,
-    place: String,
-    timeStart: String,
-    timeEnd: String
+    Picture1: String,
+    Name: String,
+    Description: {
+      type: String,
+      default: '高雄的景點！歡迎來玩！'
+    },
+    organizer: {
+      type: String,
+      default: '高雄市'
+    },
+    category: {
+      type: String,
+      default: 'Entertainment'
+    },
+    Add: {
+      type: String,
+      default: '高雄'
+    },
+    timeStart: {
+      type: String,
+      default: '2020/10/01'
+    },
+    timeEnd: {
+      type: String,
+      default: '2020/11/30'
+    }
   }
 }
 </script>

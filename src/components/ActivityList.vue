@@ -1,20 +1,21 @@
 <template>
   <div class="activity-list">
-    <h3 class="activity-list__result">Showing {{numberOfResults}} results by…</h3>
+    <h3 class="activity-list__result">Showing {{resultList.length}} {{resultList.length > 1 ? "results" : "result" }} by…</h3>
     <div class="activity-list__tags">
       <span class="tag">{{location}}</span>
       <span class="tag" v-for="tag in categories.specific" :key="tag">
         {{tag}}<i class="far fa-times-circle"></i>
       </span>
     </div>
-    <div class="activity-list__card-list">
-      <ActivityCard v-for="card in cards" v-bind="card" :key="card.title" />
+    <div class="activity-list__card-list" v-if="resultList.length">
+      <ActivityCard v-for="card in resultList" v-bind="card" :key="card._id" />
     </div>
+    <p class="activity-list__no-result" v-else>目前沒有資料耶 ( ˘•ω•˘ )◞</p>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { mapState } from 'vuex';
 import ActivityCard from '/@/components/ActivityCard.vue';
 
@@ -27,50 +28,30 @@ export default {
     ActivityCard
   },
   setup() {
-    let numberOfResults = ref(0)
-    let cards = ref([
-      {
-        img: 'https://picsum.photos/470/470',
-        title: 'Kogi Cosby sweater.',
-        description: 'Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.',
-        organizer: 'Ethan Foster',
-        category: 'Entertainment',
-        place: 'Kaohsiung City',
-        timeStart: '2018/5/24',
-        timeEnd: '2018/5/31'
-      },
-      {
-        img: 'https://picsum.photos/470/470',
-        title: 'Kogi Cosby sweater.',
-        description: 'Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.',
-        organizer: 'Ethan Foster',
-        category: 'Entertainment',
-        place: 'Kaohsiung City',
-        timeStart: '2018/5/24',
-        timeEnd: '2018/5/31'
-      },
-      {
-        img: 'https://picsum.photos/470/470',
-        title: 'Kogi Cosby sweater.',
-        description: 'Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.',
-        organizer: 'Ethan Foster',
-        category: 'Entertainment',
-        place: 'Kaohsiung City',
-        timeStart: '2018/5/24',
-        timeEnd: '2018/5/31'
-      }
-    ])
+    let attractions = ref([]);
 
+    onMounted(async () => {
+      const res = await fetch('https://raw.githubusercontent.com/hexschool/KCGTravel/master/datastore_search.json');
+      const data = await res.json();
+      attractions.value = data.result.records;
+    })
     return {
-      numberOfResults,
-      cards
+      attractions
     }
   },
-  computed: mapState([
-    'location',
-    'time',
-    'categories'
-  ])
+  computed: {
+    resultList() {
+      const vm = this;
+      return this.attractions.filter(function(attraction) {
+        return attraction.Zone === vm.location
+      })
+    },
+    ...mapState([
+      'location',
+      'time',
+      'categories'
+    ])
+  }
 }
 </script>
 
@@ -93,6 +74,10 @@ export default {
     &::-webkit-scrollbar {
       display: none;
     }
+  }
+  &__no-result {
+    font-size: 24px;
+    font-weight: 700;
   }
   > * {
     transition: all .3s;
