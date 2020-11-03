@@ -6,7 +6,7 @@ import NotFound from '../components/NotFound.vue'
 const history = createWebHistory()
 const routes = [
   { path: '/', component: ActivityList },
-  { path: '/content/:_id', component: Content },
+  { path: '/content/:_id', name: 'content', component: Content },
   { path: '/:path(.*)*', component: NotFound }
 ]
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div tag="div" class="card" @click="handleRoute">
     <div class="card__image" :style="{'background-image': 'url(' + Picture1 + ')'}"></div>
     <!-- <img class="card__image" :src="img" alt=""> -->
     <div class="card__body">
@@ -50,6 +50,16 @@ export default {
     timeEnd: {
       type: String,
       default: '2020/11/30'
+    },
+    _id: {
+      type: Number,
+      default: 0
+    }
+  },
+  methods: {
+    handleRoute() {
+      if(this.$router.currentRoute.value.fullPath !== '/') return;
+      this.$router.push({ name: 'content', params: { _id: this._id } })
     }
   }
 }
@@ -88,6 +98,7 @@ export default {
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
+      line-height: 1.2;
     }
     &__organizer {
       font-weight: 700;
@@ -111,6 +122,18 @@ export default {
         margin-right: 20px;
       }
     }
+  }
+}
+.card.detail {
+  flex-direction: column;
+  .card__image {
+    min-height: 400px;
+  }
+  .card__body__description {
+    overflow: initial;
+    text-overflow: initial;
+    display: block;
+    -webkit-line-clamp: initial;
   }
 }
 @media (max-width:1100px) {

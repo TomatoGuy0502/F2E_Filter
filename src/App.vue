@@ -17,6 +17,8 @@ export default {
     FilterMenu
   },
   mounted: async function() {
+      console.log(this.$router.currentRoute.value)
+
     const res = await fetch('https://raw.githubusercontent.com/hexschool/KCGTravel/master/datastore_search.json');
     const data = await res.json();
     this.$store.commit('setAttractions', data.result.records)
@@ -24,10 +26,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 main {
   background: #F2F2F2;
-  // height: calc(100vh - 84px);
   display: grid;
   grid-template-columns: 300px 1fr;
   grid-template-areas: 
