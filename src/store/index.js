@@ -1,7 +1,7 @@
-import { createStore } from "vuex";
+import { createStore } from 'vuex'
 
 export default createStore({
-  state() {
+  state () {
     return {
       location: '楠梓區',
       time: {
@@ -16,19 +16,19 @@ export default createStore({
     }
   },
   mutations: {
-    setLocation(state, location) {
-      state.location = location;
+    setLocation (state, location) {
+      state.location = location
     },
-    setTime(state, time) {
-      state.time = time;
+    setTime (state, time) {
+      state.time = time
     },
-    setCategories(state, categories) {
-      state.categories = categories;
+    setCategories (state, categories) {
+      state.categories = categories
     },
-    setAttractions(state, attractions) {
+    setAttractions (state, attractions) {
       state.attractions = attractions
     }
   },
   actions: {
   }
-});
+})
