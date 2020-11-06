@@ -4,5 +4,5 @@ module.exports = {
   alias: {
     '/@/': resolve(__dirname, './src')
   },
-  base: '/F2E_Filter/'
+  base: process.env.NODE_ENV === 'production' ? '/F2E_Filter/' : '/'
 }
