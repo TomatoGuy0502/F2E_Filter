@@ -12,7 +12,8 @@ export default createStore({
         selectAll: true,
         specific: []
       },
-      attractions: []
+      attractions: [],
+      search: ''
     }
   },
   mutations: {
@@ -27,6 +28,9 @@ export default createStore({
     },
     setAttractions (state, attractions) {
       state.attractions = attractions
+    },
+    setSearch (state, search) {
+      state.search = search
     }
   },
   actions: {

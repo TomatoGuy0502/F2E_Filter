@@ -3,6 +3,7 @@
     <h3 class="activity-list__result">Showing {{resultList.length}} {{resultList.length > 1 ? "results" : "result" }} by…</h3>
     <div class="activity-list__tags">
       <span class="tag">{{location}}</span>
+      <span class="tag" v-if="search">{{search}}</span>
       <span class="tag" v-for="tag in categories.specific" :key="tag">
         {{tag}}<i class="far fa-times-circle"></i>
       </span>
@@ -38,7 +39,8 @@ export default {
       'location',
       'time',
       'categories',
-      'attractions'
+      'attractions',
+      'search'
     ])
   }
 }

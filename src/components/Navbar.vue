@@ -3,14 +3,24 @@
     <h1 class="navbar__title">GoBear</h1>
     <div class="navbar__search">
       <label for="navbar__input"><i class="fa fa-search"></i></label>
-      <input class="navbar__input" id="navbar__input" type="text" placeholder="Explore your own activity">
+      <input class="navbar__input" id="navbar__input" type="text" placeholder="Explore your own activity" v-model="search">
     </div>
   </nav>
 </template>
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  computed: {
+    search: {
+      get () {
+        return this.$store.state.search
+      },
+      set (value) {
+        this.$store.commit('setSearch', value)
+      }
+    }
+  }
 }
 </script>
 
